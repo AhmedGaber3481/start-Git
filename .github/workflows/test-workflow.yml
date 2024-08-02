@@ -1,0 +1,26 @@
+on:
+  push:
+     branches:
+     - main
+  pull_request:
+    branches:
+    - main
+  issues:
+    types:
+    - opened
+  schedule:
+  - cron: '*/30 * * * *'
+  workflow_dispatch: #run manually
+    inputs:
+      name:
+        description: 'variable1'
+        type: String
+        required: true
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'hello world'
+      run: echo 'hello world test ${{ env.MyVAR }}'
+      env:
+         MyVAR: 'test variable'
