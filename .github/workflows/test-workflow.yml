@@ -1,8 +1,20 @@
-on: [push, pull_request]
+on:
+  push:
+     branches:
+     - main
+  pull_request:
+    branches:
+    - main
+  issues:
+    types:
+    - opened
+  schedule:
+  - cron: '*/30 * * * *'
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
     - name: 'hello world'
-      run: echo 'hello world'
-    
+      run: echo 'hello world test $MyVAR'
+      env:
+         MyVAR: 'test variable'
